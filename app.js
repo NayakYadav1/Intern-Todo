@@ -4,8 +4,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
-const routes = require('./routes')
-
 dotenv.config();
 
 const app = express();
@@ -17,7 +15,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Routes
-// app.use(routes);
+const todoRoutes = require('./routes/todoRoutes');
+app.use('/api/todos', todoRoutes)
 
 app.listen(port, async() => {
     console.log(`Server running on http://localhost:${port}`);
